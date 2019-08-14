@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webpage</title>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  margin-left: 5%;
+
+}
+
+.searchTerm {
+  width: 50%;
+  border: 3px solid black;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: black;
+ font-size: 20px;
+}
+
+.searchTerm:focus{
+  color: black;
+}
+
+.searchButton {
+  width: 100px;
+  height: 36px;
+  border: 3px solid black;
+  background: white;
+  text-align: center;
+  color: red;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 60%;
+  position: absolute;
+  top: 35%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+  border-color:black;
+}
+h1{
+color: darkblue;
+margin-left: 180px;
+font-size: 60px;
+}
+.list-group-item{
+  margin-right:120px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.glyphicon-search{
+       font-size: 29px;
+       color: red;
+}
+.que{
+  font-size: 25px;
+}
+.des{
+font-size: 18px;
+color:black;
+
+}
+.output{
+  margin-top: 50px;
+}
+/*a:visited{
+  color:#609;
+}*/
+
+</style>
+<script>
+  function myfun() {
+  searchkey = document.getElementById("search").value;
+  console.log(searchkey);
+  var xhttp = new XMLHttpRequest();
+  var txt= "";
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       var dictionary = JSON.parse(this.responseText);
+        console.log(dictionary);  
+
+          for (var i in dictionary) {
+      
+            txt += '<li class="list-group-item d-flex justify-content-between align-items-center">'+'<a href="#" class="que"  onClick="myfunction(id)" id="'+dictionary[i].question+'">'+dictionary[i].question+'<div>'+ 
+                        '<a class="like" type="text">'+
+                            '<p id="search" class="des">'+dictionary[i].description+'</p>'+
+                        '</a>'+
+                    '</div>'+
+                '</a>'+
+                '</li>'
+        }
+        document.getElementById('set').innerHTML = txt; 
+    }
+  };
+  xhttp.open("POST","/search_controller?searchkey="+searchkey, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send();
+}
+function myfunction(id){
+  myque = document.getElementById(id);
+  console.log(myque);
+  //document.getElementById('document[i].question').style.color="green";
+  /*var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       var dictionary = JSON.parse(this.responseText);
+        console.log(dictionary);  
+
+        document.getElementById('dictionary[i].question').style.color="green"; 
+    }
+  };
+  xhttp.open("POST","/link_coor?myqe="+myque, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send();*/
+}
+
+</script>
+</head>
+<body>
+
+  <div class="wrap">
+    <h1>Search</h1>
+  <div class="search">
+  
+    <input type="text" class="searchTerm" placeholder="search here..!!!" id="search" >
+      <button class="searchButton" onClick="myfun()">
+        <p> <span class="glyphicon glyphicon-search"></span></p>
+      </button>
+   </div>
+   <div id="set" class="output">
+</div>
+</body>
+</html>
