@@ -8,6 +8,7 @@ from werkzeug.utils import redirect
 from jinja2 import Environment, FileSystemLoader
 from http import cookies
 
+
 class SearchEngine(object):
 
     def dispatch_request(self, request):
@@ -38,7 +39,6 @@ class SearchEngine(object):
         with open('static/app.json') as response:
             data = json.loads(response.read())
             #data = json.load(source)
-            print(data)
 
         return self.render_template("page.html",data=data)
 
