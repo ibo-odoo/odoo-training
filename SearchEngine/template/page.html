@@ -9,10 +9,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <style type="text/css">
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body{
-  background: white;
+  background-color: lightgray;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -63,7 +63,7 @@ body{
   border-color:black;
 }
 h1{
-color: darkblue;
+color: black;
 margin-left: 180px;
 font-size: 60px;
 }
@@ -90,9 +90,9 @@ color:black;
 .output{
   margin-top: 50px;
 }
-/*a:visited{
+a.visited{
   color:#609;
-}*/
+}
 
 </style>
 <script>
@@ -107,8 +107,13 @@ color:black;
         console.log(dictionary);  
 
           for (var i in dictionary) {
-      
-            txt += '<li class="list-group-item d-flex justify-content-between align-items-center">'+'<a href="#" class="que"  onClick="myfunction(id)" id="'+dictionary[i].question+'">'+dictionary[i].question+'<div>'+ 
+            v_cls = ''
+            if(dictionary[i].visited == 'true')
+            {
+              v_cls = 'visited'
+            }
+        
+            txt += '<li class="list-group-item d-flex justify-content-between align-items-center">'+'<a href="visit?url='+dictionary[i].link+'" target="_blank" class="que '+ v_cls +'"  onClick="myfunction(id)" id="'+dictionary[i].question+'">'+dictionary[i].question+'<div>'+ 
                         '<a class="like" type="text">'+
                             '<p id="search" class="des">'+dictionary[i].description+'</p>'+
                         '</a>'+
@@ -125,36 +130,21 @@ color:black;
 }
 function myfunction(id){
   myque = document.getElementById(id);
-  console.log(myque);
-  //document.getElementById('document[i].question').style.color="green";
-  /*var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       var dictionary = JSON.parse(this.responseText);
-        console.log(dictionary);  
-
-        document.getElementById('dictionary[i].question').style.color="green"; 
-    }
-  };
-  xhttp.open("POST","/link_coor?myqe="+myque, true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send();*/
+  myque.classList.add("visited");
 }
 
 </script>
 </head>
 <body>
-
-  <div class="wrap">
-    <h1>Search</h1>
-  <div class="search">
-  
-    <input type="text" class="searchTerm" placeholder="search here..!!!" id="search" >
-      <button class="searchButton" onClick="myfun()">
-        <p> <span class="glyphicon glyphicon-search"></span></p>
-      </button>
-   </div>
-   <div id="set" class="output">
-</div>
+        <div class="wrap">
+            <h1>Search</h1>
+                <div class="search">
+                    <input type="text" class="searchTerm" placeholder="search here..!!!" id="search">
+                    <button class="searchButton" onClick="myfun()">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+        <div id="set" class="output"></div>
+        </div>
 </body>
 </html>

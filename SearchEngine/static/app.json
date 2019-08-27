@@ -5,14 +5,16 @@
                     "question":"Python Tutorial",
                     "keyword":["Python","Tutorial","python","tutorial","python tutorial"],
                     "description":"Python is a popular programming language. It was created by Guido van Rossum.",
-                    "rank":"1"
+                    "rank":"1",
+                    "link": "https://www.w3schools.com/python/"
             },
              {
                     "id":"2",
                     "question":"odoo",
                     "keyword":["odoo","company"],
                     "description":"Odoo is a suite of open source business apps that help you grow your business..",
-                    "rank":"2"
+                    "rank":"2",
+                    "link": "https://www.odoo.com/"
             },
             
             {
@@ -20,21 +22,24 @@
                     "question":"Python",
                     "keyword":["Python","tutorial","python"],
                     "description":"Python is an interpreted language, you write Python (.py) files",
-                    "rank":"3"
+                    "rank":"3",
+                    "link": "https://www.geeksforgeeks.org/python-programming-language/"
          },
          {
                     "id":"4",
                     "question":"java script",
-                    "keyword":["java","script","Java","Script","java script"],
+                    "keyword":["java","script","Java","Script","java script","javascript","Javascript"],
                     "description":"JavaScript is a interpreted, or just-in-time compiled programming language with first-class functions. ",
-                    "rank":"4"
+                    "rank":"4",
+                    "link": "https://www.w3schools.com/js/"
          },
            {
                     "id":"5",
                     "question":"Python",
                     "keyword":["Python","tutorial","python"],
                     "description":"Python is an interpreted language, you write Python (.py) files",
-                    "rank":"5"
+                    "rank":"5",
+                    "link": "https://www.tutorialspoint.com/python/index.html/"
          }
         ]
 }
